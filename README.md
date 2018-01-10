@@ -223,7 +223,8 @@ contract TestPysnark {
         ...
         Assert.equal(ps.verify(proof, io, pysnark_comm_test), true, "Proof should verify");
     }
-}```
+}
+```
 
 ### Documentation
 
