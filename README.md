@@ -237,7 +237,7 @@ make html
 
 Then, open `docs/_build/html/index.html`.
 
-A compiled PDF of the documentation is available as `docs/_build/latex/PySNARK.pdf` but this file may not always be up-to-date.
+A compiled PDF of the documentation (generated with `make pdf`) is available as `docs/PySNARK.pdf` but this file may not always be up-to-date.
 
 ## Acknowledgements
 
