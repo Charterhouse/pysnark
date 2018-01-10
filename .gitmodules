@@ -1,0 +1,6 @@
+[submodule "qaptools/xbyak"]
+	path = qaptools/xbyak
+	url = https://github.com/herumi/xbyak
+[submodule "qaptools/ate-pairing"]
+	path = qaptools/ate-pairing
+	url = https://github.com/herumi/ate-pairing
