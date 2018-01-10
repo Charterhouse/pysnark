@@ -1,0 +1,10 @@
+
+docs/.DS_Store
+.DS_Store
+.idea/workspace.xml
+build/*
+examples/pysnark_*
+*.pyc
+pysnark/qaptools/*.exe
+qaptools/*.o
+

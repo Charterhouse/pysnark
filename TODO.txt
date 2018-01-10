@@ -1,0 +1,37 @@
+TODO
+====
+
+ * If only public key needs to be enlarged, do that
+
+ * Hashing: when using packed hashing, re-organise when to assert that inputs
+   are bits (cf. hash tree example)
+
+ * Check whether \alpha's in master public key are used
+
+ * Clean up output -> put qaptools output in log file...
+
+ * qaptools: always output to stdout, or always to file?
+     - does it ever make sense to read from stdin?
+     - would be the case if you ever want to temporarily generate something and not keep it...
+
+FUTURE PLANS
+============
+
+ * Turn hash trees into library?
+
+ * Port VIFF's LP solver and verifier to PySNARK
+
+ * Autogenerate (standalone) Python verifier script (a la solidity contracts)
+
+ * Create one file with both I/O wires and proof (and commitments? and masterpk?)
+
+ * Master commitment keys?
+
+ * Read only relevant part of master key to speed things up
+
+ * qaptools: check whether Ec2 elements can be Ec1 (e.g., p_ravx)
+
+ * qaptools: common approach for reading files, checking first token (avoid readahead...)
+
+ * Comparisons with operator overloading?
+
