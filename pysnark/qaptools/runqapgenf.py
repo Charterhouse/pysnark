@@ -53,7 +53,7 @@ def run(nm, sig, sz=None):
     Run the qapgenf tool to generate evaluation/verification keys for the given function.
 
     :param nm: Function name to generate key material for
-    :param sig: Signature of the function (as returned by :py:fn:`pysnark.qapsplit.qapsplit`
+    :param sig: Signature of the function (as returned by :py:func:`pysnark.qapsplit.qapsplit`
     :param sz: If None, use the master secret key; else, use the coefficient cache of the given size
     :return: None
     """
@@ -73,8 +73,8 @@ def ensure_ek(nm, sig, eksz):
     corresponding to the given signature
 
     :param nm: Function name
-    :param sig: Signature as returned by :py:fn:`pysnark.qapsplit.qapsplit`
-    :param eksz: Function size as returned by :py:fn:`pysnark.qapsplit.qapsplit`
+    :param sig: Signature as returned by :py:func:`pysnark.qapsplit.qapsplit`
+    :param eksz: Function size as returned by :py:func:`pysnark.qapsplit.qapsplit`
     :return: None
     """
 

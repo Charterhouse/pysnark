@@ -24,3 +24,5 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 	rm -f ../examples/__init__.py ../examples/ggh/__init__.py
     
+pdf: latexpdf
+	cp _build/latex/PySNARK.pdf .

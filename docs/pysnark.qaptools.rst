@@ -1,5 +1,5 @@
 pysnark\.qaptools package
-====================
+=========================
 
 Submodules
 ----------
