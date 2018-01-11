@@ -170,7 +170,8 @@ PySNARK supports the automatic generation of smart contracts that verify the cor
 These smart contracts are written in Solidity and require support for the recent zkSNARK verification opcodes ([EIP 196](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-196.md), [EIP 197](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-197.md)) included in Ethereum Byzantium.
 To test them out, install a development version of Truffle using [these instructions](https://github.com/trufflesuite/truffle/blob/develop/CONTRIBUTING.md).
 
-Continuing the above example, as verifier first run
+Continuing the above example, suppose you have a verifiable computation proof as produced above (i.e., performing `runqapver` as described above works).
+First run
 ```
 truffle init
 ```
