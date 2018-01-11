@@ -1,6 +1,6 @@
 # PySNARK
 
-PySNARK is a Python-based system for performing verifiable computations based on the [Pinocchio](https://eprint.iacr.org/2013/279) system and the [Geppetri](https://eprint.iacr.org/2017/013) extension for proofs on authenticated data.
+PySNARK is a Python-based system for easily performing verifiable computations based on the [Pinocchio](https://eprint.iacr.org/2013/279) system and the [Geppetri](https://eprint.iacr.org/2017/013) extension for proofs on authenticated data.
 
 PySNARK is free to use for non-commercial,
 experimental and research purposes, see `LICENSE.md` for details.
@@ -108,7 +108,7 @@ This will perform a verifiable computation based on the previously generated key
 To try out running PySNARK as a verifier, put the files discussed above (i.e.,  `pysnark_schedule`, `pysnark_masterpk` and `pysnark_vk_main` received from the trusted party, and `pysnark_proof` and `pysnark_values` received from the prover) in a folder and run
 
 ```
-PYTHONPATH=../.. python -m pysnark.qaptools.runqapver
+python -m pysnark.qaptools.runqapver
 ```
 
 This will verify the computation proof with respect to the input/output values from the `pysnark_values` file, e.g,:
@@ -129,6 +129,8 @@ This has three applications:
  - it allows proofs to refer to external private inputs from parties other than the trusted third party;
  - it allows different verifiable computations to share secret data with each other; and
  - it allows to divide a verifiable computation into multiple subcomputations, each with their own evaluation and verification keys (but all based on the same master secret key)
+
+All computations sharing committe data should use the same master secret key.
  
 See `examples/testcomm.py` for examples.
  
@@ -165,7 +167,7 @@ When a particular functon is used multiple times in a verifiable computation, us
 ## Using PySNARK for smart contracts 
 
 PySNARK supports the automatic generation of smart contracts that verify the correctness of the given zk-SNARK.
-These smart contracts are written in Solidity and require support for the recent zkSNARK verification opcodes ([EIP 196](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-196.md), [EIP 197](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-197.md)).
+These smart contracts are written in Solidity and require support for the recent zkSNARK verification opcodes ([EIP 196](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-196.md), [EIP 197](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-197.md)) included in Ethereum Byzantium.
 To test them out, install a development version of Truffle using [these instructions](https://github.com/trufflesuite/truffle/blob/develop/CONTRIBUTING.md).
 
 Continuing the above example, as verifier first run
