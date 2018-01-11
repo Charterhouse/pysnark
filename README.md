@@ -26,6 +26,7 @@ make SUPPORT_SNARK=1
 Build the `qaptools` library:
 
 ```
+cd ../..
 cd qaptools
 make
 ```
@@ -33,6 +34,7 @@ make
 Build and install the `pysnark` library:
 
 ```
+cd ..
 python setup.py install
 ```
 
