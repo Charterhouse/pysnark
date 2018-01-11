@@ -142,8 +142,8 @@ To commit to data, use `pysnark.qaptools.runqapinput`, e.g., to commit to values
 
 ```python -m pysnark.qaptools.runqapinput test 1 2 3```
 
-Share `pysnark_wires_test` with any prover who wants to perform a computation with respect to this committed data, and `pysnark_comm_test` to any verifier. 
 Alternatively, use `pysnark.qaptools.runqapinput.gencomm` from a Python script.
+Share `pysnark_wires_test` with any prover who wants to perform a computation with respect to this committed data, and `pysnark_comm_test` to any verifier. 
 
 Import this data into the verifiable computation with 
 
@@ -171,13 +171,14 @@ When a particular functon is used multiple times in a verifiable computation, us
 PySNARK supports the automatic generation of smart contracts that verify the correctness of the given zk-SNARK.
 These smart contracts are written in Solidity and require support for the recent zkSNARK verification opcodes ([EIP 196](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-196.md), [EIP 197](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-197.md)) included in Ethereum Byzantium.
 To test them out, install a development version of Truffle using [these instructions](https://github.com/trufflesuite/truffle/blob/develop/CONTRIBUTING.md).
+This functionality is based on ideas from [ZoKrates](https://github.com/JacobEberhardt/ZoKrates).
 
 Continuing the above example, suppose you have a verifiable computation proof as produced above (i.e., performing `runqapver` as described above works).
 First run
 ```
 truffle init
 ```
-to initialise Truffle (to just see the Solidity code without installing truffle, create two empty directories `contracts` and `test`).
+to initialise Truffle (to just see the Solidity code without installing Truffle, create two empty directories `contracts` and `test`).
 Next, run 
 ```
 python -m pysnark.contract
