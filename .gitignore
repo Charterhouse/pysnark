@@ -7,3 +7,15 @@ examples/pysnark_*
 pysnark/qaptools/*.exe
 qaptools/*.o
 docs/_build/*
+qaptools/qapcoeffcache
+qaptools/qapgen
+qaptools/qapgenf
+qaptools/qapinput
+qaptools/qapprove
+qaptools/qapver
+pysnark/qaptools/qapcoeffcache
+pysnark/qaptools/qapgen
+pysnark/qaptools/qapgenf
+pysnark/qaptools/qapinput
+pysnark/qaptools/qapprove
+pysnark/qaptools/qapver
