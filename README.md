@@ -232,6 +232,22 @@ contract TestPysnark {
 }
 ```
 
+To get more detailed information about the gas usage of the smart contract, run with Ganache: start ``ganache-cli``; edit ``truffle.js`` to add a development network, e.g.:
+
+```
+module.exports = {
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*" // Match any network id
+    }
+  }
+};
+```
+and finally, run ``truffle test --network development``.
+
+
 ### Documentation
 
 To generate PySNARK's documentation, do:
