@@ -44,7 +44,7 @@ from options import vc_p
 import random as rndom
 random = rndom.SystemRandom()
 
-inited = False
+hasinited = False
 
 qape = None                # qap equation file (only for key generation)
 qapv = None                # qap wire value file
@@ -61,7 +61,7 @@ def init():
 
     :return: None
     """
-    global qape, qapv, qapvo
+    global qape, qapv, qapvo, hasinited
 
     if options.do_pysnark():
         qapv = open(options.get_wire_file(), "w")
@@ -74,7 +74,7 @@ def init():
         qape = open(options.get_eqs_file(), "w")
         print >>qape, "# PySNARK equations"
 
-    inited = True
+    hasinited = True
 
 
 def inited(fn):
@@ -87,7 +87,7 @@ def inited(fn):
     :return: Decorated function
     """
     def inited_(*args, **kwargs):
-        if not inited:
+        if not hasinited:
             init()
             enterfn("main", "main")
         return fn(*args, **kwargs)
@@ -123,7 +123,7 @@ def enterfn(fname, call=None):
 
     global vc_ctx, vc_ctr, vc_ioctr
 
-    if not inited: init()
+    if not hasinited: init()
 
     if call is None:
         call=(vc_ctx+"_"+str(vc_ctr[vc_ctx])+"_" if vc_ctx is not None else "") + fname
