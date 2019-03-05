@@ -32,6 +32,7 @@
 #define BN_SUPPORT_SNARK
 #define MIE_ATE_USE_GMP
 #include <bn.h>
+#include <time.h>
 
 using namespace bn;
 using namespace std;
@@ -56,5 +57,11 @@ void libqap_init() {
   g20=g2*0;
 
   gmp_randinit_default (randst);
+    
+  // note that this is not cryptographically secure!
+  struct timespec curt;
+  clock_gettime(CLOCK_MONOTONIC_RAW, &curt);
+  uint64_t diff = curt.tv_sec*1000000000 + curt.tv_nsec;  
+  gmp_randseed_ui(randst, diff);
 }
 

@@ -4,6 +4,8 @@ PySNARK is a Python-based system for easily performing verifiable computations b
 
 PySNARK may be used for non-commercial, experimental and research purposes; see `LICENSE.md` for details.
 
+PySNARK is experimental and **not fit for production environment**. In particular, PySNARK does **not use cryptographically secure randomness**! See `base.cpp` and `modp.cpp` of `qaptools`.
+
 ## Installation
 
 ### Unix (Linux/MacOS/...)
