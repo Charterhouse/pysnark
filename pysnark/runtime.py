@@ -410,12 +410,12 @@ class Var:
     @inited
     def val(self, nm=None):
         global vc_ctx, vc_ctr
-        Var(self.value, nm)
+        (self-Var(self.value, nm)).assert_zero()
         return self.value
 
     def __neg__(self):
         """ Returns negated VcShare. """
-        return Var(vc_p - self.value, [(-c % vc_p, v) for (c, v) in self.sig])
+        return Var(vc_p - self.value, [(-c, v) for (c, v) in self.sig])
         
     def __add__(self, other):
         """ Add VcShare or constant to self. """
