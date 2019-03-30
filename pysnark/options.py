@@ -31,6 +31,11 @@ import os
 vc_p = 21888242871839275222246405745257275088548364400416034343698204186575808495617
 """ The modulus used in the verifiable computation. All computations are performed using modular arithmetic with this modulus. """
 
+ignore_errors = False
+""" If set to True, ValueErrors will not be raised. This allows, e.g., to
+    build key material for a verification computation without knowing
+    the witness"""
+
 def do_pysnark():
     if "PYSNARK_ENABLED" in os.environ: return os.environ["PYSNARK_ENABLED"]=="1"
     return True

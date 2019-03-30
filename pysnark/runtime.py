@@ -259,7 +259,7 @@ def subqap(nm):
         def subqap__(*args, **kwargs):
             global vc_ctx
 
-            if kwargs: raise ValueError("@subqap-decorated functions cannot have keyword arguments")
+            if kwargs: raise TypeError("@subqap-decorated functions cannot have keyword arguments")
 
             oldctx = vc_ctx
             call = enterfn(nm)
@@ -294,7 +294,8 @@ def subqap(nm):
 @inited
 def vc_assert_mult(v,w,y):
     """ Add QAP equation asserting that v*w=y. """
-    if (v.value*w.value-y.value)%vc_p!=0: raise ValueError("QAP equation did not hold")
+    if (v.value*w.value-y.value)%vc_p!=0:
+        if not options.ignore_errors: raise ValueError("QAP equation did not hold")
 
     if qape!=None:
         print >>qape, v.strsig(), "*", w.strsig(), "=", y.strsig(), "."
@@ -456,7 +457,8 @@ class Var:
 
     def assert_zero(self):
         """ Assert that the present VcShare represents the value zero. """
-        if self.value!=0: raise ValueError("nonzero value " + str(self.value))
+        if self.value!=0: 
+            if not options.ignore_errors: raise ValueError("nonzero value " + str(self.value))
 
         if qape!=None:
             print >>qape, "* =", self.strsig(), "."
@@ -466,7 +468,8 @@ class Var:
         (self-other).assert_zero()
             
     def assert_nonzero(self):
-        if self.value==0: raise ValueError("zero value")
+        if self.value==0: 
+            if not options.ignore_errors: raise ValueError("zero value")
 
         inv = Var(long(invert(self.value, vc_p)), True)
         vc_assert_mult(self, inv, Var.constant(1))
@@ -477,7 +480,8 @@ class Var:
         :return: None
         """
 
-        if self.value!=0 and self.value!=1: raise ValueError(str(self.value) + " is not a bit")
+        if self.value!=0 and self.value!=1:
+            if not options.ignore_errors: raise ValueError(str(self.value) + " is not a bit")
         vc_assert_mult(self, 1 - self, Var.zero())
             
     def bit_decompose(self, bl):
@@ -515,7 +519,8 @@ class Var:
         return [quo,rem]
         
     def assert_smaller(self, val):
-        if self.value>=val: raise ValueError("value too large: " + str(self.value) + ">=" + str(val))
+        if self.value>=val: 
+            if not options.ignore_errors: raise ValueError("value too large: " + str(self.value) + ">=" + str(val))
         self.bit_decompose(val.bit_length())
         (val-1-self).bit_decompose(val.bit_length())
 
