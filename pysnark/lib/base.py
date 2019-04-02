@@ -69,7 +69,7 @@ def lin_comb_pub(cofs, vals):
     introduces an additional equation to the program.
 
     :param cofs: Array of integer coefficients
-    :param vals: Array of values; at least one should be a Var
+    :param vals: Array of values
     :return: Variable representing the linear combination
     """
     
