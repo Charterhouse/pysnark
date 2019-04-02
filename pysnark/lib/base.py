@@ -26,8 +26,8 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from pysnark.runtime import Var, qape
-
+from pysnark.runtime import Var
+import pysnark.runtime
 
 def input_bit_array(bits, nm=None):
     """
@@ -69,14 +69,18 @@ def lin_comb_pub(cofs, vals):
     introduces an additional equation to the program.
 
     :param cofs: Array of integer coefficients
-    :param vals: Array of variable values
+    :param vals: Array of values; at least one should be a Var
     :return: Variable representing the linear combination
     """
+    
+    global qape
+    
+    intval = sum([c*v for (c,v) in zip(cofs,vals) if isinstance(v,int)], 0)
+    ret = Var(sum([c*v.value for (c, v) in zip(cofs, vals) if not isinstance(v,int)])+intval, True)
 
-    ret = Var(sum([c*v.value for (c, v) in zip(cofs, vals)]), True)
-
-    if qape != None:
-        print >> qape, "*  =", " ".join([(c * v).strsig() for (c, v) in zip(cofs, vals)]), (-1 * ret).strsig()
+    if pysnark.runtime.qape != None:
+        intstr = " "+Var.constant(intval).strsig() if intval!=0 else ""
+        print >> pysnark.runtime.qape, "*  ="+intstr, " ".join([(c * v).strsig() for (c, v) in zip(cofs, vals) if not isinstance(v,int)]), (-1 * ret).strsig()
 
     return ret
 

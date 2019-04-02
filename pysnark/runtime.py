@@ -485,14 +485,20 @@ class Var:
         vc_assert_mult(self, 1 - self, Var.zero())
             
     def bit_decompose(self, bl):
-        """ Assert that the present VcShare represents a positive value, that
-            is, a value in [0,2^bl] with bl the given bit length. """
+        """ 
+        Determines a bit decomposition of the given value with the given bit
+        length, with least significant bit first.
+        """
             
         bits = [Var((self.value & (1 << i)) >> i, True) for i in xrange(bl)]
         for i in xrange(len(bits)): vc_assert_mult(bits[i], 1 - bits[i], Var.zero())
         vc_assert_mult(Var.zero(), Var.zero(), self - sum([(2 ** i) * bits[i] for i in xrange(len(bits))]))
         return bits
 
+    """
+    Assert that the present VcShare represents a positive value, that is, a
+    value in [0,2^bl] with bl the given bit length.
+    """
     assert_positive = bit_decompose
 
     def __div__(self, other):
