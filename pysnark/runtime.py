@@ -525,11 +525,61 @@ class Var:
         return [quo,rem]
         
     def assert_smaller(self, val):
+        """
+        Assert that this secret value is strictly smaller than the given value.
+        If it is enough to check that the value has at most a certain bitlength,
+        it is more efficient to use bit_decompose.
+        
+        :param val Val to compare to
+        :return: None
+        """
         if self.value>=val: 
             if not options.ignore_errors: raise ValueError("value too large: " + str(self.value) + ">=" + str(val))
         self.bit_decompose(val.bit_length())
         (val-1-self).bit_decompose(val.bit_length())
 
+        
+    def check_smaller(self, val, maxbl):
+        """
+        Checks if self is strictly smaller than the public/private value "val",
+        returning 1 if this is the case and 0 if not. Both self and "val"
+        should have bitlength "maxbl" at most
+        :param val    Constant/private variable to compare to
+        :param maxbl  Maximum bitlength if self and val
+        :return:      Private variable equal to 1 if self<val and 0 otherwise
+        """
+        
+        vval = (val.value if isinstance(val,Var) else val)
+        
+        if vval.bit_length()>maxbl:
+                if not options.ignore_errors: raise ValueError("val is longer than max bitlength: " + str(val) + ">=" + str(maxbl))
+                
+                
+        if self.value.bit_length()>maxbl:
+                if not options.ignore_errors: raise ValueError("self.value is longer than max bitlength: " + str(self.value) + ">=" + str(maxbl))
+                    
+        if self.value < vval:
+            cmp = Var(1, True)
+            valtocheck = vval-1-self.value       # if cmp==1 this will be >=0
+        else:
+            cmp = Var(0, True)
+            valtocheck = self.value-vval         # if cmp==0 this will be >=    
+            
+
+        # compute cmp and assert that it is a bit
+        cmp.assert_bit()
+        
+        #compute bits b1,...,bn that are a bit decomposition of B-x if x<=B and of x-B-1 if x>B.
+        # This bit decompositon would need to be max(bitlength(B),bitlengh(x)) bits lomg
+        bits = [Var((valtocheck & (1 << i)) >> i, True) for i in xrange(maxbl)]
+        for bit in bits: bit.assert_bit()
+        
+        # assert that cmp*(2x-2bitsum(b1,..,bn)-1)+bitsum(b1,...,bn)-x+B+1 is equal to zero
+        bitsum = sum([(2 ** i) * bits[i] for i in xrange(len(bits))])
+        vc_assert_mult(cmp, 2*val-2*self-1,val+bitsum-self)
+        
+        return cmp
+    
     def isnonzero(self):
         """ Returns VcShare equal to 1 if self is not zero, and 0 if self is zero. """
 
@@ -545,7 +595,9 @@ class Var:
         return ret
 
     def iszero(self):
+        """ Returns VcShare equal to 1 if self is zero, and 0 if self is not zero. """
         return 1-self.isnonzero()
 
     def equals(self, other):
+        """ Returns VcShare equal to 1 if self equals other, and 0 if self does not equal other. """
         return (self-other).iszero()
