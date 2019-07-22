@@ -471,7 +471,7 @@ class Var:
         if self.value==0: 
             if not options.ignore_errors: raise ValueError("zero value")
 
-        inv = Var(long(invert(self.value, vc_p)), True)
+        inv = Var(long(invert(self.value if self.value!=0 else 1, vc_p)), True)
         vc_assert_mult(self, inv, Var.constant(1))
         
     def assert_bit(self):
