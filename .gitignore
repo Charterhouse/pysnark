@@ -19,3 +19,14 @@ pysnark/qaptools/qapgenf
 pysnark/qaptools/qapinput
 pysnark/qaptools/qapprove
 pysnark/qaptools/qapver
+examples/keys/pysnark_wires
+examples/keys/pysnark_ek_main
+examples/keys/pysnark_eqs
+examples/keys/pysnark_eqs_main
+examples/keys/pysnark_vk_main
+examples/keys/pysnark_values
+examples/keys/pysnark_schedule
+examples/keys/pysnark_proof
+examples/keys/pysnark_mastersk
+examples/keys/pysnark_masterpk
+examples/keys/pysnark_masterek

@@ -35,6 +35,19 @@ class Array:
 
     def __repr__(self):
         return self.arr.__repr__()
+    
+    """
+    Return an array of zeros of the given size, e.g., Array.zeros(10) or
+    Arrays.zeros(10,10). If keyword argument "var" is set to True, e.g.
+    Array.zeros(var=True) the array consists of internal VC variables, i.e.
+    Var(0,True) instances
+    """
+    @classmethod
+    def zeros(cls, *dims, **kwargs):
+        var = kwargs["var"] if "var" in kwargs else False
+        if len(dims)==1:
+            return Array([Var(0,True) if var else 0 for _ in xrange(dims[0])])
+        return Array([Array.zeros(*dims[1:], **kwargs) for _ in xrange(dims[0])])
 
     def __getitem__(self, item):
         if isinstance(item, tuple) and len(item) == 1: item = item[0]

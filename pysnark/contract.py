@@ -106,7 +106,7 @@ def contract():
     for arg in args: argvals[arg] = []
 
     print >>contract, """\
-pragma solidity ^0.4.2;
+pragma solidity >=0.4.21;
 
 import "truffle/Assert.sol";
 import "../contracts/Pairing.sol";
@@ -118,7 +118,7 @@ contract Pysnark {
 	    Pairing.G1Point memory p_ryx;
 	    Pairing.G1Point memory versum;
 	    Pairing.G2Point memory p_rwx;
-""" % ", ".join(map(lambda x: "uint[] " + x, args))
+""" % ", ".join(map(lambda x: "uint[] memory " + x, args))
 
     prooff = open(options.get_proof_file())
 
@@ -352,7 +352,7 @@ contract Pysnark {
     conttest = open(os.path.join(conttestdir, "TestPysnark.sol"), "w")
 
     print >> conttest, """\
-pragma solidity ^0.4.2;
+pragma solidity >=0.4.21;
 
 import "truffle/Assert.sol";
 import "../contracts/Pysnark.sol";
