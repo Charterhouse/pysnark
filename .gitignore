@@ -30,3 +30,17 @@ examples/keys/pysnark_proof
 examples/keys/pysnark_mastersk
 examples/keys/pysnark_masterpk
 examples/keys/pysnark_masterek
+examples/ggh/pysnark_ek_ggh
+examples/ggh/pysnark_ek_hashtree_6
+examples/ggh/pysnark_eqs
+examples/ggh/pysnark_eqs_ggh
+examples/ggh/pysnark_eqs_hashtree_6
+examples/ggh/pysnark_masterek
+examples/ggh/pysnark_masterpk
+examples/ggh/pysnark_mastersk
+examples/ggh/pysnark_proof
+examples/ggh/pysnark_schedule
+examples/ggh/pysnark_values
+examples/ggh/pysnark_vk_ggh
+examples/ggh/pysnark_vk_hashtree_6
+examples/ggh/pysnark_wires
