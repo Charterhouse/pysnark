@@ -1,5 +1,7 @@
 # PySNARK
 
+*(This is the original version of PySNARK. A rewrite with extra functionality is available [here](https://github.com/meilof/pysnark).)*
+
 PySNARK is a Python-based system for easily performing verifiable computations based on the [Pinocchio](https://eprint.iacr.org/2013/279) zk-SNARK system and the [Geppetri](https://eprint.iacr.org/2017/013) extension for proofs on authenticated data. Verifiable computations can also be automatically turned into Solidity smart contracts for use on the Ethereum blockchain.
 
 PySNARK may be used for non-commercial, experimental and research purposes; see `LICENSE.md` for details.
